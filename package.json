@@ -1,0 +1,20 @@
+{
+  "name": "Reduce-Relaunch",
+  "version": "1.0.0",
+  "description": "New Reduce Band Page",
+  "main": "main.js",
+  "scripts": {
+    "build": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fSchaffernicht/Reduce-Relaunch.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/fSchaffernicht/Reduce-Relaunch/issues"
+  },
+  "homepage": "https://github.com/fSchaffernicht/Reduce-Relaunch#readme"
+}

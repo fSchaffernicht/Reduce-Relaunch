@@ -4,14 +4,27 @@ import './App.css'
 
 import { Navigation } from './components'
 
+import Home from './routes/Home'
+import Story from './routes/Story'
+import Media from './routes/Media'
+import Contact from './routes/Contact'
+
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
+
+console.log(process.env)
+
 const items = [
   {
     text: 'Home',
     to: '/'
   },
   {
-    text: 'Music',
-    to: '/music'
+    text: 'Media',
+    to: '/media'
+  },
+  {
+    text: 'Story',
+    to: '/story'
   },
   {
     text: 'Contact',
@@ -21,15 +34,18 @@ const items = [
 
 function App() {
   return (
-    <div className='container'>
-      <header className='App-header'>
-        <img src={logo} className='App-logo' alt='logo' />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
+    <Router>
+      <div className='container'>
         <Navigation items={items} />
-      </header>
-    </div>
+        <img src={logo} className='App-logo' alt='logo' />
+        <Switch>
+          <Route exact path={items[0].to} component={Home} />
+          <Route path={items[1].to} component={Media} />
+          <Route path={items[2].to} component={Story} />
+          <Route path={items[3].to} component={Contact} />
+        </Switch>
+      </div>
+    </Router>
   )
 }
 

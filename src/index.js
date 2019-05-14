@@ -1,20 +1,8 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import './index.css'
-import AppComponent from './App'
-import Contact from './Contact'
+import App from './App'
 import * as serviceWorker from './serviceWorker'
-
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
-
-const App = () => (
-  <Router>
-    <Switch>
-      <Route exact path='/' component={AppComponent} />
-      <Route to='/login' component={Contact} />
-    </Switch>
-  </Router>
-)
 
 ReactDOM.render(<App />, document.getElementById('root'))
 

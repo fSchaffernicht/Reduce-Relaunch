@@ -1,0 +1,8 @@
+.navigation {
+  display: inline-block;
+}
+
+.navigation-item {
+  display: inline-block;
+  padding-right: 1em;
+}

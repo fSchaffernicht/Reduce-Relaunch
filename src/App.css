@@ -1,4 +1,15 @@
 .container {
   margin: auto;
   max-width: 800px;
+  padding: 1em;
+}
+
+.header {
+  margin-top: 5em;
+}
+
+@media only screen and (max-device-width: 480px) {
+  .header {
+    margin-top: 1em;
+  }
 }

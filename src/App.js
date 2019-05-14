@@ -1,5 +1,4 @@
 import React from 'react'
-import logo from './logo.svg'
 import './App.css'
 
 import { Navigation } from './components'
@@ -10,8 +9,6 @@ import Media from './routes/Media'
 import Contact from './routes/Contact'
 
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
-
-console.log(process.env)
 
 const items = [
   {
@@ -36,8 +33,9 @@ function App() {
   return (
     <Router>
       <div className='container'>
-        <Navigation items={items} />
-        <img src={logo} className='App-logo' alt='logo' />
+        <header className='header'>
+          <Navigation items={items} />
+        </header>
         <Switch>
           <Route exact path={items[0].to} component={Home} />
           <Route path={items[1].to} component={Media} />

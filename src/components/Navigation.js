@@ -7,7 +7,10 @@ export default function Navigation({ items }) {
     <ul className='navigation'>
       {items.map(({ text, to }, index) => (
         <li className='navigation-item' key={index}>
-          <Link to={to} text={text} />
+          <Link
+            to={to}
+            text={index !== items.length - 1 ? `${text} |` : text}
+          />
         </li>
       ))}
     </ul>

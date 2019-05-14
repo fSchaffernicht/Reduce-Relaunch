@@ -7,9 +7,9 @@ body {
 
 body {
   margin: 0;
-  background: #121212;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-family: 'Cutive Mono', monospace;
+  background: #121212;
   color: white;
 }

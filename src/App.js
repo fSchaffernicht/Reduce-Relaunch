@@ -1,7 +1,7 @@
 import React from 'react'
 import './App.css'
 
-import { Navigation } from './components'
+import { Navigation, Footer } from './components'
 
 import Home from './routes/Home'
 import Story from './routes/Story'
@@ -42,6 +42,7 @@ function App() {
           <Route path={items[2].to} component={Story} />
           <Route path={items[3].to} component={Contact} />
         </Switch>
+        <Footer />
       </div>
     </Router>
   )

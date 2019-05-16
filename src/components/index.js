@@ -3,5 +3,7 @@ import Navigation from './Navigation'
 import Logo from './Logo'
 import Video from './Video'
 import Footer from './Footer'
+import Loader from './Loader'
+import Audio from './Audio'
 
-export { Link, Navigation, Logo, Video, Footer }
+export { Link, Navigation, Logo, Video, Footer, Loader, Audio }

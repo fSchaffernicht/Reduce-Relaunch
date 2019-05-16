@@ -7,3 +7,8 @@
 .list-item {
   margin-bottom: 0.25em;
 }
+
+.logo-container {
+  display: flex;
+  align-items: center;
+}

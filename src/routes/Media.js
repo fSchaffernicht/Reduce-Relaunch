@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
+import moment from 'moment'
 
-import { Video } from '../components'
+import { Video, Loader } from '../components'
 
 export default function Media() {
   const [videos, setVideos] = useState(null)
@@ -20,16 +21,14 @@ export default function Media() {
     }
   }, [videos])
 
-  if (!videos) return null
+  if (!videos) return <Loader />
 
   const { items } = videos
 
-  // console.log('items', items)
-
   if (items && items.length > 0) {
-    return items.map((video, index) => {
+    return filterVideos(items).map((video, index) => {
       const videoData = mapVideoData(video)
-      return <Video {...videoData} />
+      return <Video key={index} {...videoData} />
     })
   }
 
@@ -41,7 +40,11 @@ function mapVideoData(data) {
     videoId: data.id.videoId,
     title: data.snippet.title,
     description: data.snippet.description,
-    date: data.snippet.publishedAt,
+    date: moment(data.snippet.publishedAt).format('DD.MM.YYYY'),
     thumbnails: data.snippet.thumbnails
   }
+}
+
+function filterVideos(videos) {
+  return videos.filter(video => video.snippet.title !== 'Reduce')
 }

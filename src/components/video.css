@@ -1,0 +1,24 @@
+.video-container {
+  margin-bottom: 4em;
+  display: flex;
+  /* align-items: center; */
+}
+
+.video-info-container {
+  background: #333;
+  padding: 1em 2em;
+}
+
+.video-player {
+  /* margin-right: 2em; */
+}
+
+.video-date {
+  margin-bottom: 1em;
+  font-weight: bold;
+}
+
+.video-title {
+  font-weight: bold;
+  margin-bottom: 0.5em;
+}

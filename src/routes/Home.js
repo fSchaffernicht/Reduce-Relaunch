@@ -1,11 +1,14 @@
 import React from 'react'
-import { Logo } from '../components'
+import { Logo, Audio } from '../components'
 import './home.css'
 
 export default function Home() {
   return (
     <div>
-      <Logo />
+      <div className='logo-container'>
+        <Logo />
+        <Audio />
+      </div>
       <ul className='list'>
         <li className='list-item'>Band aus Frankfurt am Main</li>
         <li className='list-item'>Kein Pop!</li>

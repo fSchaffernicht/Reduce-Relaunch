@@ -77,12 +77,19 @@ export default function Audio({ items }) {
   const audioRef = useRef()
   const durationRef = useRef()
 
+  // save audioRef with closure
+  const getSong = getSongWithRef(audioRef)
+
   function onTimeUpdate(event) {
     const { currentTime, duration } = event.target
     dispatch({ type: 'duration', payload: currentTime })
 
     if (currentTime === duration) {
-      dispatch({ type: 'stop' })
+      if (!!items[current + 1]) {
+        onNextSong()
+      } else {
+        onStop()
+      }
     }
   }
 
@@ -125,12 +132,15 @@ export default function Audio({ items }) {
     getSong(current).currentTime = 0
   }
 
-  function getSong(song) {
-    if (audioRef && audioRef.current) {
-      return audioRef.current.children[song]
-    }
+  function onDurationClick(event) {
+    const songLength = getSong(current).duration
+    const barWidth = getWidth(durationRef)
+    const clicked = event.nativeEvent.offsetX
 
-    return {}
+    const x = (clicked / barWidth) * songLength
+
+    dispatch({ type: 'duration', payload: x })
+    getSong(current).currentTime = x
   }
 
   const songLength = getSong(current).duration
@@ -139,10 +149,6 @@ export default function Audio({ items }) {
   const style = {
     width: `${barWidth * (duration / songLength)}px`
   }
-
-  // console.log(items, audioRef.current)
-
-  console.log('items[current].title', items[current].title)
 
   return (
     <div className='audio-player'>
@@ -184,7 +190,11 @@ export default function Audio({ items }) {
         classNames='audio'
         unmountOnExit
       >
-        <div className='audio-duration' ref={durationRef}>
+        <div
+          className='audio-duration'
+          onClick={onDurationClick}
+          ref={durationRef}
+        >
           <div className='audio-duration-fill' style={{ ...style }} />
         </div>
       </CSSTransition>
@@ -209,6 +219,16 @@ function getWidth(element) {
   }
 
   return undefined
+}
+
+function getSongWithRef(ref) {
+  return function(song) {
+    if (ref && ref.current) {
+      return ref.current.children[song]
+    }
+
+    return {}
+  }
 }
 
 const Stop = ({ onClick }) => (

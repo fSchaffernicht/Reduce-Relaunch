@@ -1,76 +1,181 @@
-import React, { useState, useRef, useEffect } from 'react'
+import React, { useState, useRef, useReducer } from 'react'
 import { CSSTransition } from 'react-transition-group'
-import Song from '../assets/reduce-final.mp3'
 import './audio.css'
 
-export default function Audio() {
-  const [play, setPlay] = useState(false)
-  const [pause, setPause] = useState(false)
-  const [stop, setStop] = useState(false)
-  const [duration, setDuration] = useState(0)
+const initialState = {
+  current: 0,
+  play: false,
+  pause: false,
+  stop: false,
+  duration: 0
+}
+
+function reducer(state, { type, payload }) {
+  switch (type) {
+    case 'play':
+      return {
+        ...state,
+        play: true,
+        pause: false,
+        stop: false,
+        current: payload
+      }
+
+    case 'pause':
+      return {
+        ...state,
+        play: false,
+        pause: true,
+        stop: false
+      }
+
+    case 'stop':
+      return {
+        ...state,
+        play: false,
+        pause: false,
+        stop: true,
+        duration: 0
+      }
+
+    case 'duration':
+      return {
+        ...state,
+        duration: payload
+      }
+
+    case 'next':
+      return {
+        ...state,
+        play: true,
+        current: state.current + 1,
+        stop: false,
+        pause: false,
+        duration: 0
+      }
+
+    case 'prev':
+      return {
+        ...state,
+        play: true,
+        current: state.current - 1,
+        stop: false,
+        pause: false,
+        duration: 0
+      }
+    default:
+      return state
+  }
+}
+
+export default function Audio({ items }) {
+  const [{ current, play, pause, stop, duration }, dispatch] = useReducer(
+    reducer,
+    initialState
+  )
 
   const audioRef = useRef()
-  // const timer = useRef()
+  const durationRef = useRef()
 
   function onTimeUpdate(event) {
     const { currentTime, duration } = event.target
-    setDuration(currentTime)
+    dispatch({ type: 'duration', payload: currentTime })
 
     if (currentTime === duration) {
-      onStop()
+      dispatch({ type: 'stop' })
     }
   }
 
+  function onNextSong() {
+    dispatch({ type: 'stop' })
+
+    getSong(current).pause()
+    getSong(current).currentTime = 0
+
+    dispatch({ type: 'next' })
+
+    getSong(current + 1).play()
+  }
+
+  function onPrevSong() {
+    dispatch({ type: 'stop' })
+
+    getSong(current).pause()
+    getSong(current).currentTime = 0
+
+    dispatch({ type: 'prev' })
+
+    getSong(current - 1).play()
+  }
+
   function onPlay() {
-    setPlay(true)
-    setPause(false)
-    setStop(false)
-    audioRef.current.play()
+    dispatch({ type: 'play', payload: current })
+    getSong(current).play()
   }
 
   function onPause() {
-    setPlay(false)
-    setPause(true)
-    setStop(false)
-    audioRef.current.pause()
+    dispatch({ type: 'pause' })
+    getSong(current).pause()
   }
 
   function onStop() {
-    setPlay(false)
-    setPause(false)
-    setStop(true)
-    setDuration(0)
-    audioRef.current.pause()
-    audioRef.current.currentTime = 0
+    dispatch({ type: 'stop' })
+
+    getSong(current).pause()
+    getSong(current).currentTime = 0
   }
 
-  const songLength = audioRef && audioRef.current && audioRef.current.duration
+  function getSong(song) {
+    if (audioRef && audioRef.current) {
+      return audioRef.current.children[song]
+    }
+
+    return {}
+  }
+
+  const songLength = getSong(current).duration
+  const barWidth = getWidth(durationRef)
 
   const style = {
-    width: `${200 * (duration / songLength)}px`
+    width: `${barWidth * (duration / songLength)}px`
   }
 
-  console.log('style', songLength, duration, style)
+  // console.log(items, audioRef.current)
+
+  console.log('items[current].title', items[current].title)
 
   return (
     <div className='audio-player'>
       <CSSTransition
         in={play || pause}
-        timeout={500}
+        timeout={600}
         classNames='audio'
         unmountOnExit
       >
-        <div className='audio-player-title'>Reduce</div>
+        <div className='audio-player-title'>{items[current].title}</div>
       </CSSTransition>
       <div className='audio-elements-container'>
-        {play ? <Pause onClick={onPause} /> : <Play onClick={onPlay} />}
+        <div className='play-stop'>
+          {play ? <Pause onClick={onPause} /> : <Play onClick={onPlay} />}
+          <CSSTransition
+            in={play || pause}
+            timeout={300}
+            classNames='audio'
+            unmountOnExit
+          >
+            <Stop onClick={onStop} />
+          </CSSTransition>
+        </div>
         <CSSTransition
           in={play || pause}
           timeout={300}
           classNames='audio'
           unmountOnExit
         >
-          <Stop onClick={onStop} />
+          <div className='prev-next'>
+            <Prev visible={!!items[current - 1]} onClick={onPrevSong} />
+            <Next visible={!!items[current + 1]} onClick={onNextSong} />
+          </div>
         </CSSTransition>
       </div>
       <CSSTransition
@@ -79,15 +184,31 @@ export default function Audio() {
         classNames='audio'
         unmountOnExit
       >
-        <div className='audio-duration'>
+        <div className='audio-duration' ref={durationRef}>
           <div className='audio-duration-fill' style={{ ...style }} />
         </div>
       </CSSTransition>
-      <audio ref={audioRef} preload='true' onTimeUpdate={onTimeUpdate}>
-        <source src={Song} />
-      </audio>
+      <div ref={audioRef}>
+        {items.map((item, index) => (
+          <audio
+            preload='true'
+            onPlay={e => console.log(e.target)}
+            onTimeUpdate={onTimeUpdate}
+          >
+            <source key={index} src={item.audio} />
+          </audio>
+        ))}
+      </div>
     </div>
   )
+}
+
+function getWidth(element) {
+  if (element && element.current) {
+    return element.current.clientWidth
+  }
+
+  return undefined
 }
 
 const Stop = ({ onClick }) => (
@@ -199,3 +320,105 @@ const Pause = ({ onClick }) => (
     </svg>
   </div>
 )
+
+const Next = ({ onClick, visible }) => {
+  const classes = visible ? 'audio-element' : 'audio-element not-visible'
+  return (
+    <div className={classes} onClick={onClick}>
+      <svg
+        width='23px'
+        height='20px'
+        viewBox='0 0 23 20'
+        version='1.1'
+        xmlns='http://www.w3.org/2000/svg'
+      >
+        <defs />
+        <g
+          id='Page-1'
+          stroke='none'
+          strokeWidth='1'
+          fill='none'
+          fillRule='evenodd'
+        >
+          <g
+            id='Desktop-HD'
+            transform='translate(-1247.000000, -399.000000)'
+            fill='#FFFFFF'
+            fillRule='nonzero'
+          >
+            <g id='Group' transform='translate(1247.000000, 399.000000)'>
+              <g id='Orion_play-Copy'>
+                <path
+                  d='M0,1.42857143 C0,0.642857143 0.50673913,0.324285714 1.12630435,0.72 L14.5258696,9.28 C14.8045537,9.38778131 14.9909053,9.6763035 14.9909053,10 C14.9909053,10.3236965 14.8045537,10.6122187 14.5258696,10.72 L1.12695652,19.28 C0.50673913,19.6757143 0,19.3571429 0,18.5714286 L0,1.42857143 Z'
+                  id='Shape'
+                />
+              </g>
+              <g
+                id='Orion_play-Copy-2'
+                transform='translate(8.000000, 0.000000)'
+              >
+                <path
+                  d='M0,1.42857143 C0,0.642857143 0.50673913,0.324285714 1.12630435,0.72 L14.5258696,9.28 C14.8045537,9.38778131 14.9909053,9.6763035 14.9909053,10 C14.9909053,10.3236965 14.8045537,10.6122187 14.5258696,10.72 L1.12695652,19.28 C0.50673913,19.6757143 0,19.3571429 0,18.5714286 L0,1.42857143 Z'
+                  id='Shape'
+                />
+              </g>
+            </g>
+          </g>
+        </g>
+      </svg>
+    </div>
+  )
+}
+
+const Prev = ({ onClick, visible }) => {
+  const classes = visible ? 'audio-element' : 'audio-element not-visible'
+
+  return (
+    <div className={classes} onClick={onClick}>
+      <svg
+        width='23px'
+        height='20px'
+        viewBox='0 0 23 20'
+        version='1.1'
+        xmlns='http://www.w3.org/2000/svg'
+      >
+        <defs />
+        <g
+          id='Page-1'
+          stroke='none'
+          strokeWidth='1'
+          fill='none'
+          fillRule='evenodd'
+        >
+          <g
+            id='Desktop-HD'
+            transform='translate(-1204.000000, -399.000000)'
+            fill='#FFFFFF'
+            fillRule='nonzero'
+          >
+            <g
+              id='Group'
+              transform='translate(1215.500000, 409.000000) rotate(-180.000000) translate(-1215.500000, -409.000000) translate(1204.000000, 399.000000)'
+            >
+              <g id='Orion_play-Copy'>
+                <path
+                  d='M0,1.42857143 C0,0.642857143 0.50673913,0.324285714 1.12630435,0.72 L14.5258696,9.28 C14.8045537,9.38778131 14.9909053,9.6763035 14.9909053,10 C14.9909053,10.3236965 14.8045537,10.6122187 14.5258696,10.72 L1.12695652,19.28 C0.50673913,19.6757143 0,19.3571429 0,18.5714286 L0,1.42857143 Z'
+                  id='Shape'
+                />
+              </g>
+              <g
+                id='Orion_play-Copy-2'
+                transform='translate(8.000000, 0.000000)'
+              >
+                <path
+                  d='M0,1.42857143 C0,0.642857143 0.50673913,0.324285714 1.12630435,0.72 L14.5258696,9.28 C14.8045537,9.38778131 14.9909053,9.6763035 14.9909053,10 C14.9909053,10.3236965 14.8045537,10.6122187 14.5258696,10.72 L1.12695652,19.28 C0.50673913,19.6757143 0,19.3571429 0,18.5714286 L0,1.42857143 Z'
+                  id='Shape'
+                />
+              </g>
+            </g>
+          </g>
+        </g>
+      </svg>
+    </div>
+  )
+}

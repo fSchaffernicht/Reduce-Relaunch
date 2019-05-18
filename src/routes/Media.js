@@ -1,10 +1,15 @@
 import React, { useEffect, useState } from 'react'
 import moment from 'moment'
 
-import { Video, Loader } from '../components'
+import { Video, Loader, Modal } from '../components'
 
 export default function Media() {
   const [videos, setVideos] = useState(null)
+  const [id, setId] = useState(null)
+
+  function handleClick(id) {
+    setId(id)
+  }
 
   useEffect(() => {
     if (!videos) {
@@ -26,10 +31,27 @@ export default function Media() {
   const { items } = videos
 
   if (items && items.length > 0) {
-    return filterVideos(items).map((video, index) => {
-      const videoData = mapVideoData(video)
-      return <Video key={index} {...videoData} />
-    })
+    return (
+      <div>
+        {filterVideos(items).map((video, index) => {
+          const videoData = mapVideoData(video)
+          return <Video onClick={handleClick} key={index} {...videoData} />
+        })}
+        <Modal isOpen={id}>
+          <iframe
+            className='video-player'
+            title='youtube'
+            id='ytplayer'
+            type='text/html'
+            width='800'
+            height='500'
+            src={`https://www.youtube.com/embed/${id}`}
+            frameborder='0'
+            allowfullscreen
+          />
+        </Modal>
+      </div>
+    )
   }
 
   return 'no videos here'

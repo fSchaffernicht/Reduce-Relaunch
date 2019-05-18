@@ -1,4 +1,4 @@
-import React, { useState, useRef, useReducer } from 'react'
+import React, { useRef, useReducer } from 'react'
 import { CSSTransition } from 'react-transition-group'
 import './audio.css'
 
@@ -191,11 +191,13 @@ export default function Audio({ items }) {
         unmountOnExit
       >
         <div
-          className='audio-duration'
+          className='audio-duration-wrapper'
           onClick={onDurationClick}
           ref={durationRef}
         >
-          <div className='audio-duration-fill' style={{ ...style }} />
+          <div className='audio-duration'>
+            <div className='audio-duration-fill' style={{ ...style }} />
+          </div>
         </div>
       </CSSTransition>
       <div ref={audioRef}>

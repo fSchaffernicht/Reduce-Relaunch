@@ -6,22 +6,12 @@ export default function Video({
   thumbnails,
   description,
   date,
-  videoId
+  videoId,
+  onClick
 }) {
   console.log('thumb', thumbnails)
   return (
-    <div className='video-container'>
-      {/* <iframe
-        className='video-player'
-        title='youtube'
-        id='ytplayer'
-        type='text/html'
-        width='450'
-        height='200'
-        src={`https://www.youtube.com/embed/${videoId}`}
-        frameborder='0'
-        allowfullscreen
-      /> */}
+    <div className='video-container' onClick={() => onClick(videoId)}>
       <div className='video-player'>
         <img
           alt={title}

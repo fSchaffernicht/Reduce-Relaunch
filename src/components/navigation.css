@@ -1,0 +1,11 @@
+.navigation {
+  display: block;
+  margin: 0;
+  padding: 0;
+  margin-bottom: 5em;
+}
+
+.navigation-item {
+  display: inline-block;
+  padding-right: 1em;
+}

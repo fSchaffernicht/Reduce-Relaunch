@@ -202,11 +202,7 @@ export default function Audio({ items }) {
       </CSSTransition>
       <div ref={audioRef}>
         {items.map((item, index) => (
-          <audio
-            preload='true'
-            onPlay={e => console.log(e.target)}
-            onTimeUpdate={onTimeUpdate}
-          >
+          <audio preload='true' onTimeUpdate={onTimeUpdate}>
             <source key={index} src={item.audio} />
           </audio>
         ))}

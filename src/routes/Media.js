@@ -13,7 +13,6 @@ export default function Media() {
 
   useEffect(() => {
     if (!videos) {
-      console.log('refetch')
       fetch(
         `https://www.googleapis.com/youtube/v3/search?part=snippet&channelId=UCCxaY-87Cazvpq7AIqWW8nA&maxResults=50&key=${
           process.env.REACT_APP_API_KEY

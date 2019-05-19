@@ -57,7 +57,7 @@
 }
 
 .audio-duration-wrapper:hover .audio-duration-fill {
-  background: #f13535;
+  background: #f4724b;
 }
 
 .audio-duration {
@@ -94,7 +94,7 @@
 
 .audio-element:hover svg path,
 .audio-element:hover svg g {
-  fill: #f13535;
+  fill: #f4724b;
 }
 
 .audio-element.not-visible {

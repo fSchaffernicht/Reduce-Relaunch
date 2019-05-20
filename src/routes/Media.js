@@ -1,29 +1,21 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import moment from 'moment'
 
 import { Video, Loader, Modal } from '../components'
 
+import { useFetch } from '../util'
+
 export default function Media() {
-  const [videos, setVideos] = useState(null)
   const [id, setId] = useState(null)
+  const videos = useFetch(
+    `https://www.googleapis.com/youtube/v3/search?part=snippet&channelId=UCCxaY-87Cazvpq7AIqWW8nA&maxResults=50&key=${
+      process.env.REACT_APP_API_KEY
+    }`
+  )
 
   function handleClick(id) {
     setId(id)
   }
-
-  useEffect(() => {
-    if (!videos) {
-      fetch(
-        `https://www.googleapis.com/youtube/v3/search?part=snippet&channelId=UCCxaY-87Cazvpq7AIqWW8nA&maxResults=50&key=${
-          process.env.REACT_APP_API_KEY
-        }`
-      )
-        .then(response => response.json())
-        .then(result => {
-          setVideos(result)
-        })
-    }
-  }, [videos])
 
   if (!videos) return <Loader />
 

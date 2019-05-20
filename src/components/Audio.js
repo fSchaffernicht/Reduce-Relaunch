@@ -69,7 +69,7 @@ function reducer(state, { type, payload }) {
 }
 
 export default function Audio({ items }) {
-  const [{ current, play, pause, stop, duration }, dispatch] = useReducer(
+  const [{ current, play, pause, duration }, dispatch] = useReducer(
     reducer,
     initialState
   )
@@ -203,6 +203,7 @@ export default function Audio({ items }) {
       <div ref={audioRef}>
         {items.map((item, index) => (
           <audio
+            key={index}
             preload='true'
             onPlay={e => console.log(e.target)}
             onTimeUpdate={onTimeUpdate}

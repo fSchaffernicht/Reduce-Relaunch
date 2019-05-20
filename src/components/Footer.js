@@ -5,15 +5,15 @@ import './footer.css'
 const items = [
   {
     text: 'Facebook',
-    to: 'https://www.facebook.com/reduceBand'
+    href: 'https://www.facebook.com/reduceBand'
   },
   {
     text: 'Instagram',
-    to: '/'
+    href: '/'
   },
   {
     text: 'E-Mail',
-    to: '/'
+    href: 'mailto:reduce.band@gmail.com'
   }
 ]
 

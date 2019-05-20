@@ -9,7 +9,6 @@ export default function Video({
   videoId,
   onClick
 }) {
-  console.log('thumb', thumbnails)
   return (
     <div className='video-container' onClick={() => onClick(videoId)}>
       <div className='video-player'>

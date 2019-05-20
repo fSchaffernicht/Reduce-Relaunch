@@ -22,3 +22,16 @@
   font-weight: bold;
   margin-bottom: 0.5em;
 }
+
+@media only screen and (max-width: 600px) {
+  .video-container {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .video-container img {
+    margin: auto;
+    display: block;
+    margin-bottom: 1em;
+  }
+}

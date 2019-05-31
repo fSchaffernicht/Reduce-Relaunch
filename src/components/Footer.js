@@ -9,7 +9,7 @@ const items = [
   },
   {
     text: 'Instagram',
-    href: '/'
+    href: 'https://www.instagram.com/reduce_band/'
   },
   {
     text: 'E-Mail',

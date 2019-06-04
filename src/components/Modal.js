@@ -3,11 +3,11 @@ import { createPortal } from 'react-dom'
 import { CSSTransition } from 'react-transition-group'
 import './modal.css'
 
-function PortalModal({ children, onClick }) {
+function PortalModal({ children, onClose }) {
   const modal = (
     <div className='modal'>
       <div className='modal-content-container'>
-        <div className='modal-close' onClick={onClick}>
+        <div className='modal-close' onClick={onClose}>
           <Close />
         </div>
         {children}
@@ -17,7 +17,7 @@ function PortalModal({ children, onClick }) {
   return createPortal(modal, document.body)
 }
 
-export default function Modal({ isOpen, children }) {
+export default function Modal({ isOpen, children, onClose }) {
   const [open, setOpen] = useState(isOpen)
 
   useEffect(() => {
@@ -28,19 +28,23 @@ export default function Modal({ isOpen, children }) {
     function handleKeys(event) {
       if (event.key === 'Escape') {
         setOpen(false)
+        if (typeof onClose === 'function') onClose()
       }
     }
 
     document.addEventListener('keydown', handleKeys)
 
     return () => document.removeEventListener('keydown', handleKeys)
-  }, [])
+  }, [onClose])
 
-  const handleOpen = () => setOpen(!open)
+  const handleClose = () => {
+    setOpen(false)
+    if (typeof onClose === 'function') onClose()
+  }
 
   return (
     <CSSTransition in={open} classNames='modal' unmountOnExit timeout={300}>
-      <PortalModal onClick={handleOpen}>{children}</PortalModal>
+      <PortalModal onClose={handleClose}>{children}</PortalModal>
     </CSSTransition>
   )
 }

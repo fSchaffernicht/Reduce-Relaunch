@@ -14,8 +14,16 @@
 .modal-content-container {
   position: relative;
   padding: 1rem;
+  max-width: 80vw;
+  max-height: 80vh;
   background: white;
+  -webkit-overflow-scrolling: touch;
   transition: all 300ms ease-in-out;
+}
+
+.modal-content-container iframe {
+  min-width: 100%;
+  min-height: 100%;
 }
 
 .modal-close {

@@ -6,5 +6,6 @@ import Footer from './Footer'
 import Loader from './Loader'
 import Audio from './Audio'
 import Modal from './Modal'
+import Photo from './Photo'
 
-export { Link, Navigation, Logo, Video, Footer, Loader, Audio, Modal }
+export { Link, Navigation, Logo, Video, Footer, Loader, Audio, Modal, Photo }

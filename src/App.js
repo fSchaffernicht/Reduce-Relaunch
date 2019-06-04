@@ -1,4 +1,4 @@
-import React, { Suspense } from 'react'
+import React from 'react'
 import './App.css'
 
 import { Navigation, Footer } from './components'
@@ -13,7 +13,8 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 const items = [
   {
     text: 'Home',
-    to: '/'
+    to: '/',
+    exact: true
   },
   {
     text: 'Media',

@@ -1,0 +1,16 @@
+.photo-container {
+  overflow: hidden;
+  position: relative;
+  width: 320px;
+  height: 320px;
+}
+
+.photo-info-container {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.photo-info-text {
+  margin-left: 1rem;
+}

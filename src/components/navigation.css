@@ -5,7 +5,36 @@
   margin-bottom: 5em;
 }
 
+.navigation svg {
+  display: none;
+}
+
 .navigation-item {
   display: inline-block;
-  padding-right: 1em;
+  padding-right: 2em;
+  font-size: 1em;
+}
+
+.navigation.responsive {
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: black;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.navigation svg {
+  display: block;
+}
+
+.responsive .navigation-item {
+  display: flex;
+  height: 100%;
+  align-content: center;
+  justify-content: center;
 }

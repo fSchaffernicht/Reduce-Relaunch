@@ -30,14 +30,13 @@
   position: absolute;
   top: -4rem;
   right: 0;
+  cursor: pointer;
+  transition: all 200ms ease-in-out;
 }
-/* 
-.modal-enter .modal-content-container {
-  transform: translateY(-50%);
+
+.modal-close:hover {
+  opacity: 0.6;
 }
-.modal-enter-active .modal-content-container {
-  transform: translateY(0);
-} */
 
 .modal-enter {
   opacity: 0;

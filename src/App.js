@@ -18,7 +18,17 @@ const items = [
   },
   {
     text: 'Media',
-    to: '/media'
+    to: '/media',
+    children: [
+      {
+        text: 'Videos',
+        to: '/media/videos'
+      },
+      {
+        text: 'Photos',
+        to: '/media/photos'
+      }
+    ]
   },
   {
     text: 'Story',
@@ -35,7 +45,7 @@ function App() {
     <Router>
       <div className='container'>
         <header className='header'>
-          <Navigation items={items} />
+          <Navigation responsive items={items} />
         </header>
         <Switch>
           <Route exact path={items[0].to} component={Home} />

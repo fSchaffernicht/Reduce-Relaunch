@@ -24,4 +24,16 @@ export function filterVideos(videos) {
   return videos.filter(video => video.snippet.title !== 'Reduce')
 }
 
+export function classNames(classes) {
+  let result = ''
+
+  for (let className in classes) {
+    if (classes[className]) {
+      result += className + ' '
+    }
+  }
+
+  return result.trim()
+}
+
 export { useFetch }

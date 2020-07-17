@@ -1,26 +1,26 @@
-import React from 'react'
-import { Navigation } from './'
-import './footer.css'
+import React from "react"
+import { Navigation } from "./"
+import "./footer.css"
 
 const items = [
   {
-    text: 'Facebook',
-    href: 'https://www.facebook.com/reduceBand'
+    text: "Facebook",
+    href: "https://www.facebook.com/reduceBand",
   },
   {
-    text: 'Instagram',
-    href: 'https://www.instagram.com/reduce_band/'
+    text: "Instagram",
+    href: "https://www.instagram.com/reduce_band/",
   },
   {
-    text: 'E-Mail',
-    href: 'mailto:reduce.band@gmail.com'
-  }
+    text: "reduce.band@gmail.com",
+    href: "mailto:reduce.band@gmail.com",
+  },
 ]
 
 export default function Footer() {
   return (
-    <footer className='footer'>
-      <div className='footer-navigation-container'>
+    <footer className="footer">
+      <div className="footer-navigation-container">
         <Navigation items={items} />
       </div>
     </footer>

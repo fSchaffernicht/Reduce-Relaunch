@@ -1,34 +1,31 @@
-import React from 'react'
-import { Logo, Audio } from '../components'
-import './home.css'
+import React from "react"
+import { Logo, Audio } from "../components"
+import "./home.css"
 
-import Reduce from '../assets/reduce-final.mp3'
-import City from '../assets/city-final.mp3'
+import Satori from "../assets/Satori.mp3"
+import Mania from "../assets/Mania.mp3"
+import Five from "../assets/Five.mp3"
 
 const audioItems = [
   {
-    title: 'Reduce',
-    audio: Reduce
+    title: "Satori",
+    audio: Satori,
   },
   {
-    title: 'City',
-    audio: City
-  }
+    title: "Mania",
+    audio: Mania,
+  },
+  {
+    title: "Five",
+    audio: Five,
+  },
 ]
 
 export default function Home() {
   return (
-    <div>
-      <div className='logo-container'>
-        <Logo />
-        <Audio items={audioItems} />
-      </div>
-      <ul className='list'>
-        <li className='list-item'>Band aus Frankfurt am Main</li>
-        <li className='list-item'>Kein Pop!</li>
-        <li className='list-item'>Mixed Martial Rock</li>
-        <li className='list-item'>Kann/Will live spielen</li>
-      </ul>
+    <div className="logo-container">
+      <Logo />
+      <Audio items={audioItems} />
     </div>
   )
 }

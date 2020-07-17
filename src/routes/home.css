@@ -11,6 +11,11 @@
 .logo-container {
   display: flex;
   align-items: center;
+
+  position: absolute;
+  left: 10%;
+  top: 50%;
+  transform: translate(0, -50%);
 }
 
 @media only screen and (max-device-width: 480px) {

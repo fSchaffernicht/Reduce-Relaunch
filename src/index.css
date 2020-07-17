@@ -1,15 +1,90 @@
-@import url('https://fonts.googleapis.com/css?family=Cutive+Mono|Mitr:600');
+@import url("https://fonts.googleapis.com/css?family=Cutive+Mono|Mitr:600");
 
 html,
 body {
-  min-height: 100%;
+  min-height: 100vh;
 }
 
 body {
   margin: 0;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  font-family: 'Cutive Mono', monospace;
-  background: #121212;
+  font-family: "Cutive Mono", monospace;
+  background-color: #121212;
   color: white;
+}
+
+.container:hover ~ .background-layer {
+  opacity: 1;
+}
+
+.background-layer {
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  position: fixed;
+  transition: opacity 1s;
+  background: rgba(0, 0, 0, 0.3);
+  opacity: 1;
+}
+
+.background {
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  position: fixed;
+
+  -webkit-transition: opacity 3s ease-in-out;
+  -moz-transition: opacity 3s ease-in-out;
+  -o-transition: opacity 3s ease-in-out;
+  transition: opacity 3s ease-in-out;
+  opacity: 0;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+  filter: alpha(opacity=0);
+}
+
+.background.fade-in {
+  opacity: 1;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
+  filter: alpha(opacity=1);
+}
+
+.background.one {
+  background: url("assets/images/IMG_2994.jpg");
+  background-size: cover;
+  background-position: center center;
+}
+.background.two {
+  background: url("assets/images/IMG_3012.jpg");
+  background-size: cover;
+  background-position: center center;
+}
+.background.three {
+  background: url("assets/images/IMG_3025.jpg");
+  background-size: cover;
+  background-position: center center;
+}
+.background.four {
+  background: url("assets/images/IMG_3030.jpg");
+  background-size: cover;
+  background-position: center center;
+}
+.background.five {
+  background: url("assets/images/IMG_3084.jpg");
+  background-size: cover;
+  background-position: center center;
+}
+.background.six {
+  background: url("assets/images/IMG_3146.jpg");
+  background-size: cover;
+  background-position: center center;
+}
+.background.seven {
+  background: url("assets/images/IMG_3246.jpg");
+  background-size: cover;
+  background-position: center center;
 }

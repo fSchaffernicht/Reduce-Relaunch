@@ -9,7 +9,7 @@
 }
 
 .audio-player svg path {
-  fill: #ff5722;
+  fill: red;
 }
 
 .audio-player svg {
@@ -19,9 +19,9 @@
 .audio-player-title {
   position: absolute;
   top: -2rem;
-  font-family: 'Mitr', cursive;
+  font-family: "Mitr", cursive;
   text-transform: uppercase;
-  color: #ff5722;
+  color: red;
   font-weight: bold;
   font-size: 14px;
   margin-bottom: 1rem;
@@ -74,7 +74,7 @@
 
 .audio-duration-fill {
   position: absolute;
-  background: #ff5722;
+  background: red;
   height: 100%;
   width: 0%;
   transition: width 200ms ease-in-out;
@@ -88,7 +88,7 @@
 
 .audio-element svg path,
 .audio-element svg g {
-  fill: #ff5722;
+  fill: red;
   transition: all 100ms ease-in-out;
 }
 
@@ -140,7 +140,7 @@
   }
 
   .audio-duration-wrapper:hover .audio-duration-fill {
-    background: #ff5722;
+    background: red;
   }
 
   .audio-element {

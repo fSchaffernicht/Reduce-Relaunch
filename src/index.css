@@ -54,37 +54,37 @@ body {
 }
 
 .background.one {
-  background: url("assets/images/IMG_2994.jpg");
+  background: url("assets/images/small/IMG_2994.jpg");
   background-size: cover;
   background-position: center center;
 }
 .background.two {
-  background: url("assets/images/IMG_3012.jpg");
+  background: url("assets/images/small/IMG_3012.jpg");
   background-size: cover;
   background-position: center center;
 }
 .background.three {
-  background: url("assets/images/IMG_3025.jpg");
+  background: url("assets/images/small/IMG_3025.jpg");
   background-size: cover;
   background-position: center center;
 }
 .background.four {
-  background: url("assets/images/IMG_3030.jpg");
+  background: url("assets/images/small/IMG_3030.jpg");
   background-size: cover;
   background-position: center center;
 }
 .background.five {
-  background: url("assets/images/IMG_3084.jpg");
+  background: url("assets/images/small/IMG_3084.jpg");
   background-size: cover;
   background-position: center center;
 }
 .background.six {
-  background: url("assets/images/IMG_3146.jpg");
+  background: url("assets/images/small/IMG_3146.jpg");
   background-size: cover;
   background-position: center center;
 }
 .background.seven {
-  background: url("assets/images/IMG_3246.jpg");
+  background: url("assets/images/small/IMG_3246.jpg");
   background-size: cover;
   background-position: center center;
 }

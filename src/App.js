@@ -1,14 +1,14 @@
-import React, { useState, useEffect } from "react"
+import React, { useState } from "react"
 import "./App.css"
 
 import useInterval from "./util/useInterval"
 
-import { Navigation, Footer } from "./components"
+import { Footer } from "./components"
 
 import Home from "./routes/Home"
-import Story from "./routes/Story"
-import Media from "./routes/Media"
-import Contact from "./routes/Contact"
+// import Story from "./routes/Story"
+// import Media from "./routes/Media"
+// import Contact from "./routes/Contact"
 
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom"
 

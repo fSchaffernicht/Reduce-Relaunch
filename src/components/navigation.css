@@ -16,6 +16,12 @@
   font-size: 1em;
 }
 
+@media only screen and (max-device-width: 480px) {
+  .navigation-item {
+    display: block;
+  }
+}
+
 .navigation.responsive {
   position: fixed;
   top: 0;

@@ -10,7 +10,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-family: "Cutive Mono", monospace;
-  background-color: #121212;
+  background-color: #000000;
   color: white;
 }
 
@@ -45,6 +45,12 @@ body {
   opacity: 0;
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
   filter: alpha(opacity=0);
+}
+
+@media only screen and (max-device-width: 480px) {
+  .background {
+    height: 39vh;
+  }
 }
 
 .background.fade-in {

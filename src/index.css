@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css?family=Cutive+Mono|Mitr:600");
+@import url('https://fonts.googleapis.com/css?family=Cutive+Mono|Mitr:600');
 
 html,
 body {
@@ -9,7 +9,7 @@ body {
   margin: 0;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  font-family: "Cutive Mono", monospace;
+  font-family: 'Cutive Mono', monospace;
   background-color: #000000;
   color: white;
 }
@@ -43,7 +43,7 @@ body {
   -o-transition: opacity 3s ease-in-out;
   transition: opacity 3s ease-in-out;
   opacity: 0;
-  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+  -ms-filter: 'progid:DXImageTransform.Microsoft.Alpha(Opacity=0)';
   filter: alpha(opacity=0);
 }
 
@@ -55,42 +55,42 @@ body {
 
 .background.fade-in {
   opacity: 1;
-  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
+  -ms-filter: 'progid:DXImageTransform.Microsoft.Alpha(Opacity=100)';
   filter: alpha(opacity=1);
 }
 
 .background.one {
-  background: url("assets/images/small/IMG_2994.jpg");
+  background: url('assets/images/small/IMG_2994.jpg');
   background-size: cover;
   background-position: center center;
 }
 .background.two {
-  background: url("assets/images/small/IMG_3012.jpg");
+  background: url('assets/images/small/IMG_3012.jpg');
   background-size: cover;
   background-position: center center;
 }
 .background.three {
-  background: url("assets/images/small/IMG_3025.jpg");
+  background: url('assets/images/small/IMG_3025.jpg');
   background-size: cover;
   background-position: center center;
 }
 .background.four {
-  background: url("assets/images/small/IMG_3030.jpg");
+  background: url('assets/images/small/IMG_3030.jpg');
   background-size: cover;
   background-position: center center;
 }
 .background.five {
-  background: url("assets/images/small/IMG_3084.jpg");
+  background: url('assets/images/small/IMG_3084.jpg');
   background-size: cover;
   background-position: center center;
 }
 .background.six {
-  background: url("assets/images/small/IMG_3146.jpg");
+  background: url('assets/images/small/IMG_3146.jpg');
   background-size: cover;
   background-position: center center;
 }
 .background.seven {
-  background: url("assets/images/small/IMG_3246.jpg");
+  background: url('assets/images/small/IMG_3246.jpg');
   background-size: cover;
   background-position: center center;
 }

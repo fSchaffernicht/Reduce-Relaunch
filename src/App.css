@@ -4,11 +4,39 @@
   padding: 1em;
 }
 
-.header {
-}
-
 @media only screen and (max-device-width: 480px) {
   .header {
     margin-top: 0;
+  }
+}
+
+.list {
+  margin-top: 4em;
+  margin-left: 0;
+  padding: 1em;
+}
+
+.list-item {
+  margin-bottom: 0.25em;
+}
+
+.logo-container {
+  display: flex;
+  align-items: center;
+
+  position: absolute;
+  left: 10%;
+  top: 50%;
+  transform: translate(0, -50%);
+}
+
+@media only screen and (max-device-width: 480px) {
+  .logo-container {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .logo {
+    margin-bottom: 5rem;
   }
 }

@@ -22,7 +22,7 @@ const initialState = {
   current: 0,
   play: false,
   pause: false,
-  stop: false,
+  stop: true,
   duration: 0,
 }
 
@@ -53,7 +53,7 @@ function reducer(state: State, { type, payload }: actionType<number>): State {
         stop: false,
       }
 
-    case Actions.STOP:
+    case Actions.STOP: {
       return {
         ...state,
         play: false,
@@ -61,6 +61,7 @@ function reducer(state: State, { type, payload }: actionType<number>): State {
         stop: true,
         duration: 0,
       }
+    }
 
     case Actions.DURATION:
       return {
@@ -119,6 +120,15 @@ const Title = styled.div`
   font-weight: bold;
   font-size: 14px;
   margin-bottom: 1rem;
+`
+const Time = styled.div`
+  position: absolute;
+  top: -3rem;
+  font-family: 'Mitr', cursive;
+  text-transform: uppercase;
+  color: red;
+  font-weight: bold;
+  font-size: 12px;
 `
 
 const IconContainer = styled.div`
@@ -193,7 +203,7 @@ interface Props {
 
 export default function Audio(props: Props) {
   const { items } = props
-  const [{ current, play, pause, duration }, dispatch] = useReducer(
+  const [{ current, play, pause, stop, duration }, dispatch] = useReducer(
     reducer,
     initialState
   )
@@ -273,13 +283,11 @@ export default function Audio(props: Props) {
 
   const songLength = getSong(current).duration
   const barWidth = getWidth(durationRef)
-  const seconds = Math.floor(duration)
+  const seconds = Math.floor(songLength) % 60
   const songTime = {
-    minutes: Math.round(Math.floor(songLength) / 60),
-    seconds: Math.floor(songLength) % 60,
+    minutes: Math.floor(Math.floor(songLength) / 60),
+    seconds: seconds < 10 ? `0${seconds}` : seconds,
   }
-
-  console.log('songLength', songTime.minutes, songTime.seconds, seconds)
 
   const style = {
     width: `${barWidth * (duration / songLength)}px`,
@@ -287,7 +295,10 @@ export default function Audio(props: Props) {
 
   return (
     <AudioPlayer>
-      <Title>{!play || pause ? 'play' : items[current].title}</Title>
+      <Time>{!stop && `${songTime.minutes}:${songTime.seconds}`}</Time>
+      <Title>
+        {stop ? 'play Sigma' : `${current + 1}: ${items[current].title}`}
+      </Title>
       <IconContainer>
         <PlayStateContainer>
           {play ? <Pause onClick={onPause} /> : <Play onClick={onPlay} />}

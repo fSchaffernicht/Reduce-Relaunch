@@ -114,20 +114,23 @@ const AudioPlayer = styled.div`
 const Title = styled.div`
   position: absolute;
   top: -2rem;
-  font-family: 'Mitr', cursive;
   text-transform: uppercase;
-  color: red;
-  font-weight: bold;
+  /* color: red; */
+  font-weight: 800;
   font-size: 14px;
   margin-bottom: 1rem;
 `
 const Time = styled.div`
   position: absolute;
   top: -3rem;
-  font-family: 'Mitr', cursive;
-  text-transform: uppercase;
-  color: red;
-  font-weight: bold;
+  /* color: red; */
+  font-size: 12px;
+`
+
+const TimePassed = styled.div`
+  position: absolute;
+  bottom: -1.5rem;
+  /* color: red; */
   font-size: 12px;
 `
 
@@ -281,21 +284,38 @@ export default function Audio(props: Props) {
     getSong(current).currentTime = x
   }
 
-  const songLength = getSong(current).duration
+  const { duration: songDuration, currentTime } = getSong(current)
+
   const barWidth = getWidth(durationRef)
-  const seconds = Math.floor(songLength) % 60
+  const seconds = Math.floor(songDuration) % 60
+
   const songTime = {
-    minutes: Math.floor(Math.floor(songLength) / 60),
+    minutes: Math.floor(Math.floor(songDuration) / 60),
     seconds: seconds < 10 ? `0${seconds}` : seconds,
   }
 
+  const timePassed = {
+    minutes:
+      Math.floor(Math.floor(currentTime) / 60) < 10
+        ? `0${Math.floor(Math.floor(currentTime) / 60)}`
+        : Math.floor(Math.floor(currentTime) / 60),
+    seconds:
+      Math.floor(currentTime) % 60 < 10
+        ? `0${Math.floor(currentTime) % 60}`
+        : Math.floor(currentTime) % 60,
+  }
+
   const style = {
-    width: `${barWidth * (duration / songLength)}px`,
+    width: `${barWidth * (duration / songDuration)}px`,
   }
 
   return (
     <AudioPlayer>
       <Time>{!stop && `${songTime.minutes}:${songTime.seconds}`}</Time>
+      <TimePassed>
+        {!stop && `${timePassed.minutes}:${timePassed.seconds}`}
+      </TimePassed>
+      {/* <input type="range" min="0" max="10" id="myRange" /> */}
       <Title>
         {stop ? 'play Sigma' : `${current + 1}: ${items[current].title}`}
       </Title>
@@ -408,7 +428,7 @@ const Stop = ({ onClick }: { onClick: any }) => (
         <g
           id="Desktop-HD"
           transform="translate(-1139.000000, -395.000000)"
-          fill="#FF6450"
+          fill="red"
         >
           <rect
             id="Rectangle-2"

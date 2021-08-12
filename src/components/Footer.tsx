@@ -19,7 +19,8 @@ const List = styled.div`
 
 const ListItem = styled.div`
   padding-right: 2em;
-  font-size: 1em;
+  font-size: 0.75rem;
+  font-weight: bold;
   margin-bottom: 0.5rem;
 `
 
